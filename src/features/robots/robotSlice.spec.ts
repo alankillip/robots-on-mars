@@ -4,6 +4,7 @@ import robotsReducer, {
   RobotsState,
   selectRobots,
 } from "./robotsSlice";
+import { mockRootState } from "../shared/mockState";
 
 describe("robotsReducer", () => {
   const initialState: RobotsState = {
@@ -32,5 +33,11 @@ describe("robotsReducer", () => {
       addMove({ command: "L", robotIndex: 0 })
     );
     expect(actual.robots[0].commands[0]).toEqual("L");
+  });
+});
+
+describe("robot selectors", () => {
+  it("should select selectRobots", () => {
+    expect(selectRobots(mockRootState)).toEqual([]);
   });
 });
