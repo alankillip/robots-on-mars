@@ -1,0 +1,3 @@
+Two sections, input on left, output in right.
+Compose input from MUI, minimise opportunity for user error.
+If time, add output visualiser component, and the ability to toggle between the two.
