@@ -1,11 +1,11 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import counterReducer from "../features/counter/counterSlice";
 import gridReducer from "../features/grid/gridSlice";
+import robotReducer from "../features/robots/robotsSlice";
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     grid: gridReducer,
+    robots: robotReducer,
   },
 });
 
