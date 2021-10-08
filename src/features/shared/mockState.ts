@@ -2,9 +2,8 @@ import { RootState } from "../../app/store";
 
 export const mockRootState: RootState = {
   grid: {
-    width: 4,
-    height: 5,
-    scents: [],
+    rightX: 5,
+    leftX: 3,
   },
   robots: { robots: [] },
 };

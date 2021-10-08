@@ -1,17 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
-import { Point } from "../shared";
 
 export interface GridState {
-  width: number;
-  height: number;
-  scents: Point[];
+  rightX: number;
+  topY: number;
 }
 
 const initialState: GridState = {
-  width: 15,
-  height: 15,
-  scents: [],
+  rightX: 15,
+  topY: 15,
 };
 
 export const gridSlice = createSlice({
@@ -19,18 +16,17 @@ export const gridSlice = createSlice({
   initialState,
   reducers: {
     setGridWidth: (state, action: PayloadAction<number>) => {
-      state.width = action.payload;
+      state.rightX = action.payload;
     },
     setGridHeight: (state, action: PayloadAction<number>) => {
-      state.height = action.payload;
+      state.topY = action.payload;
     },
   },
 });
 
 export const { setGridWidth, setGridHeight } = gridSlice.actions;
 
-export const selectWidth = (state: RootState) => state.grid.width;
-export const selectHeight = (state: RootState) => state.grid.height;
-export const selectScents = (state: RootState) => state.grid.scents;
+export const selectWidth = (state: RootState) => state.grid.rightX;
+export const selectHeight = (state: RootState) => state.grid.topY;
 
 export default gridSlice.reducer;
