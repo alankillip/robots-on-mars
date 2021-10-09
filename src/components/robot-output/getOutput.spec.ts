@@ -64,7 +64,7 @@ describe("getCandidatePosition", () => {
     };
     let candidatePosition = getCandidatePosition(movingRobot);
     expect(candidatePosition.x).toEqual(5);
-    expect(candidatePosition.y).toEqual(4);
+    expect(candidatePosition.y).toEqual(6);
 
     movingRobot = {
       ...movingRobotTemplate,
@@ -80,7 +80,7 @@ describe("getCandidatePosition", () => {
     };
     candidatePosition = getCandidatePosition(movingRobot);
     expect(candidatePosition.x).toEqual(5);
-    expect(candidatePosition.y).toEqual(6);
+    expect(candidatePosition.y).toEqual(4);
 
     movingRobot = {
       ...movingRobotTemplate,
@@ -99,7 +99,7 @@ describe("updateOrientation", () => {
     expect(updateOrientation(orientation, "L")).toEqual("E");
   });
 });
-/*
+
 describe("getOutput", () => {
   it("should output sample output from mock state", () => {
     const leftX = selectWidth(mockRootState);
@@ -109,4 +109,3 @@ describe("getOutput", () => {
     expect(result).toEqual(sampleOutput);
   });
 });
-*/

@@ -34,7 +34,7 @@ export const getCandidatePosition = (robot: MovingRobot): Point => {
     case "N":
       return {
         x,
-        y: y - 1,
+        y: y + 1,
       };
     case "E":
       return {
@@ -44,7 +44,7 @@ export const getCandidatePosition = (robot: MovingRobot): Point => {
     case "S":
       return {
         x,
-        y: y + 1,
+        y: y - 1,
       };
     case "W":
       return {
@@ -109,6 +109,7 @@ export const getOutput = (leftX: number, topY: number, robots: Robot[]) => {
           if (!isScentPresent(candidatePosition, scents)) {
             scents.push(candidatePosition);
             movedRobot.lost = true;
+            movedRobot.point = candidatePosition;
           }
         } else {
           movedRobot.point = candidatePosition;
