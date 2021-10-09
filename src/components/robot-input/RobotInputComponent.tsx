@@ -1,5 +1,5 @@
 import { Robot, modifyPos } from "../../features/robots/robotsSlice";
-import { Card, Stack, Slider, Typography } from "@mui/material";
+import { Card, MenuItem, Slider, Typography, Select } from "@mui/material";
 import { useAppDispatch } from "../../app/hooks";
 import { useSelector } from "react-redux";
 import { selectHeight, selectWidth } from "../../features/grid/gridSlice";
@@ -56,6 +56,18 @@ export const RobotInputComponent = (props: { robot: Robot; index: number }) => {
         size="small"
         valueLabelDisplay="auto"
       />
+      <Select
+        labelId="demo-simple-select-standard-label"
+        id="demo-simple-select-standard"
+        value={orientation ?? "N"}
+        onChange={() => null}
+        label="Orientation"
+      >
+        <MenuItem value={"N"}>N</MenuItem>
+        <MenuItem value={"S"}>S</MenuItem>
+        <MenuItem value={"E"}>E</MenuItem>
+        <MenuItem value={"W"}>W</MenuItem>
+      </Select>
     </Card>
   );
 };

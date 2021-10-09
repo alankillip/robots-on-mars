@@ -2,8 +2,8 @@ import * as React from "react";
 
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
-import { Button, Typography } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/ControlPoint";
+import { Button, Pagination, Typography } from "@mui/material";
+import ControlPoint from "@mui/icons-material/ControlPoint";
 import { useSelector } from "react-redux";
 import {
   selectWidth,
@@ -14,6 +14,7 @@ import {
 import { useAppDispatch } from "../../app/hooks";
 import { RobotInputComponent } from "./RobotInputComponent";
 import { Robot, selectRobots } from "../../features/robots/robotsSlice";
+import { useState } from "react";
 
 const containerStyle: React.CSSProperties = {
   textAlign: "left",
@@ -24,6 +25,7 @@ const sliderStyle = {
 };
 
 export const RobotInput = () => {
+  const [currentRobot, setCurrentRobot] = useState(1);
   const width = useSelector(selectWidth);
   const height = useSelector(selectHeight);
   const robots = useSelector(selectRobots);
@@ -36,6 +38,12 @@ export const RobotInput = () => {
   const heightChange = (e: unknown, newValue: any) => {
     dispatch(setGridHeight(newValue));
   };
+
+  const handlePageChange = (e: unknown, newValue: any) => {
+    setCurrentRobot(newValue);
+  };
+
+  console.log("currentRobot", currentRobot);
 
   return (
     <Box width={"100%"} sx={containerStyle}>
@@ -65,10 +73,18 @@ export const RobotInput = () => {
         valueLabelDisplay="auto"
         onChange={heightChange}
       />
-      {robots.map((robot: Robot, index: number) => (
-        <RobotInputComponent key={index} robot={robot} index={index} />
-      ))}
-      <Button variant="outlined" startIcon={<DeleteIcon />}>
+      <Pagination
+        count={robots.length}
+        variant="outlined"
+        shape="rounded"
+        page={currentRobot}
+        onChange={handlePageChange}
+      />
+      <RobotInputComponent
+        robot={robots[currentRobot - 1]}
+        index={currentRobot}
+      />
+      <Button variant="outlined" startIcon={<ControlPoint />}>
         New Robot
       </Button>
     </Box>
