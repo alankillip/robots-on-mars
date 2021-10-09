@@ -6,6 +6,7 @@ import gridReducer, {
   selectWidth,
 } from "./gridSlice";
 import { RootState } from "../../app/store";
+import { mockRootState } from "../shared/mockState";
 
 describe("grid reducer", () => {
   const initialState: GridState = {
@@ -28,18 +29,12 @@ describe("grid reducer", () => {
 });
 
 describe("grid selectors", () => {
-  const mockState: RootState = {
-    grid: {
-      rightX: 4,
-      topY: 5,
-    },
-    robots: { robots: [] },
-  };
+  const mockState: RootState = mockRootState;
   it("should select width", () => {
-    expect(selectWidth(mockState)).toBe(4);
+    expect(selectWidth(mockState)).toBe(5);
   });
 
   it("should select heights", () => {
-    expect(selectHeight(mockState)).toBe(5);
+    expect(selectHeight(mockState)).toBe(3);
   });
 });

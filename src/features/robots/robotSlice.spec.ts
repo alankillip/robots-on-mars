@@ -38,6 +38,9 @@ describe("robotsReducer", () => {
 
 describe("robot selectors", () => {
   it("should select selectRobots", () => {
-    expect(selectRobots(mockRootState)).toEqual([]);
+    expect(selectRobots(mockRootState).length).toBe(3);
+    expect(selectRobots(mockRootState)[0].commands.join("")).toEqual(
+      "RFRFRFRF"
+    );
   });
 });

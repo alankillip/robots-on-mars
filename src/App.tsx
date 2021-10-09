@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { RobotInput } from "./components/robot-input";
+import { RobotOutput } from "./components/robot-output";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -36,7 +37,9 @@ function App() {
             </Item>
           </Grid>
           <Grid item xs={6}>
-            <Item>xs</Item>
+            <Item>
+              <RobotOutput />
+            </Item>
           </Grid>
         </Grid>
       </Paper>
