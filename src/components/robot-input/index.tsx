@@ -2,7 +2,8 @@ import * as React from "react";
 
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/ControlPoint";
 import { useSelector } from "react-redux";
 import {
   selectWidth,
@@ -11,6 +12,12 @@ import {
   setGridHeight,
 } from "../../features/grid/gridSlice";
 import { useAppDispatch } from "../../app/hooks";
+import { RobotInputComponent } from "./RobotInputComponent";
+import { Robot, selectRobots } from "../../features/robots/robotsSlice";
+
+const containerStyle: React.CSSProperties = {
+  textAlign: "left",
+};
 
 const sliderStyle = {
   width: "100%",
@@ -19,6 +26,7 @@ const sliderStyle = {
 export const RobotInput = () => {
   const width = useSelector(selectWidth);
   const height = useSelector(selectHeight);
+  const robots = useSelector(selectRobots);
   const dispatch = useAppDispatch();
 
   const widthChange = (e: unknown, newValue: any) => {
@@ -30,33 +38,39 @@ export const RobotInput = () => {
   };
 
   return (
-    <Box width={"100%"}>
+    <Box width={"100%"} sx={containerStyle}>
       <Typography id="input-slider" gutterBottom>
-        Grid Width
+        Max x ( grid left )
       </Typography>
       <Slider
         sx={sliderStyle}
         size="small"
         min={2}
         max={50}
-        defaultValue={width}
+        value={width ?? 0}
         aria-label="Small"
         valueLabelDisplay="auto"
         onChange={widthChange}
       />
       <Typography id="input-slider" gutterBottom>
-        Grid Height
+        Max y ( grid top )
       </Typography>
       <Slider
         sx={sliderStyle}
         size="small"
         min={2}
         max={50}
-        defaultValue={height}
+        value={height ?? 0}
         aria-label="Small"
         valueLabelDisplay="auto"
         onChange={heightChange}
       />
+      {robots.map((robot: Robot, index: number) => (
+        <RobotInputComponent key={index} robot={robot} index={index} />
+      ))}
+      <Button variant="outlined" startIcon={<DeleteIcon />}>
+        New Robot
+      </Button>
     </Box>
   );
 };

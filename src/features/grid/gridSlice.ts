@@ -7,8 +7,8 @@ export interface GridState {
 }
 
 const initialState: GridState = {
-  rightX: 15,
-  topY: 15,
+  rightX: 5,
+  topY: 3,
 };
 
 export const gridSlice = createSlice({

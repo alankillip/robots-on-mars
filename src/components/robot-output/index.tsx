@@ -8,5 +8,11 @@ export const RobotOutput = () => {
   const topX = useSelector(selectHeight);
   const robots = useSelector(selectRobots);
   const output = getOutput(rightX, topX, robots);
-  return <>{output}</>;
+  return (
+    <textarea
+      value={output}
+      readOnly={true}
+      style={{ border: "none", outline: "none" }}
+    />
+  );
 };

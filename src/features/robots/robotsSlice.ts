@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 import { Point } from "../shared";
+import { mockRootState } from "../shared/mockState";
 
 export type CommandType = "L" | "R" | "F";
 
@@ -19,9 +20,18 @@ export interface AddMovePayload {
   command: CommandType;
 }
 
+export interface ModifyPosPayload {
+  index: number;
+  point: Point;
+}
+
+/*
 const initialState: RobotsState = {
   robots: [],
 };
+ */
+
+const initialState: RobotsState = mockRootState.robots;
 
 export const robotSlice = createSlice({
   name: "robot",
@@ -38,10 +48,14 @@ export const robotSlice = createSlice({
       const { robotIndex, command } = action.payload;
       state.robots[robotIndex].commands.push(command);
     },
+    modifyPos: (state, action: PayloadAction<ModifyPosPayload>) => {
+      const { index, point } = action.payload;
+      state.robots[index].point = point;
+    },
   },
 });
 
-export const { addRobot, addMove } = robotSlice.actions;
+export const { addRobot, addMove, modifyPos } = robotSlice.actions;
 
 export const selectRobots = (state: RootState) => state.robots.robots;
 
