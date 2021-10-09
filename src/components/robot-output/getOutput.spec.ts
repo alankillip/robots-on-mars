@@ -1,7 +1,53 @@
-import { selectRobots } from "../../features/robots/robotsSlice";
+import { Robot, selectRobots } from "../../features/robots/robotsSlice";
 import { mockRootState } from "../../features/shared/mockState";
 import { selectHeight, selectWidth } from "../../features/grid/gridSlice";
-import { getOutput, updateOrientation } from "./getOutput";
+import {
+  getOutput,
+  updateOrientation,
+  getCandidatePosition,
+  MovingRobot,
+} from "./getOutput";
+
+describe("getCandidatePosition", () => {
+  it("should update the position by moving in the direction indicated by orientation", () => {
+    const movingRobotTemplate = {
+      point: { x: 5, y: 5 },
+      lost: false,
+      commands: [],
+    };
+    let movingRobot: MovingRobot = {
+      ...movingRobotTemplate,
+      orientation: "N",
+    };
+    let candidatePosition = getCandidatePosition(movingRobot);
+    expect(candidatePosition.x).toEqual(5);
+    expect(candidatePosition.y).toEqual(4);
+
+    movingRobot = {
+      ...movingRobotTemplate,
+      orientation: "E",
+    };
+    candidatePosition = getCandidatePosition(movingRobot);
+    expect(candidatePosition.x).toEqual(6);
+    expect(candidatePosition.y).toEqual(5);
+
+    movingRobot = {
+      ...movingRobotTemplate,
+      orientation: "S",
+    };
+    candidatePosition = getCandidatePosition(movingRobot);
+    expect(candidatePosition.x).toEqual(5);
+    expect(candidatePosition.y).toEqual(6);
+
+    movingRobot = {
+      ...movingRobotTemplate,
+      orientation: "W",
+    };
+    candidatePosition = getCandidatePosition(movingRobot);
+    expect(candidatePosition.x).toEqual(4);
+    expect(candidatePosition.y).toEqual(5);
+  });
+});
 
 describe("updateOrientation", () => {
   it("should update the direction by applying left and right turns", () => {
