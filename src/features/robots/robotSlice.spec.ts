@@ -3,6 +3,7 @@ import robotsReducer, {
   addRobot,
   RobotsState,
   selectRobots,
+  modifyOrientation,
 } from "./robotsSlice";
 import { mockRootState } from "../shared/mockState";
 
@@ -33,6 +34,14 @@ describe("robotsReducer", () => {
       addMove({ command: "L", robotIndex: 0 })
     );
     expect(actual.robots[0].commands[0]).toEqual("L");
+  });
+
+  it("should handle modifyOrientation", () => {
+    const actual = robotsReducer(
+      initialState,
+      modifyOrientation({ orientation: "N", index: 0 })
+    );
+    expect(actual.robots[0].orientation).toEqual("N");
   });
 });
 

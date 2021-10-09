@@ -10,8 +10,8 @@ import { mockRootState } from "../shared/mockState";
 
 describe("grid reducer", () => {
   const initialState: GridState = {
-    rightX: 15,
-    topY: 15,
+    rightX: 5,
+    topY: 3,
   };
   it("should handle initial state", () => {
     expect(gridReducer(undefined, { type: "unknown" })).toEqual(initialState);

@@ -1,4 +1,8 @@
-import { Robot, modifyPos } from "../../features/robots/robotsSlice";
+import {
+  Robot,
+  modifyPos,
+  modifyOrientation,
+} from "../../features/robots/robotsSlice";
 import { Card, MenuItem, Slider, Typography, Select } from "@mui/material";
 import { useAppDispatch } from "../../app/hooks";
 import { useSelector } from "react-redux";
@@ -35,6 +39,14 @@ export const RobotInputComponent = (props: { robot: Robot; index: number }) => {
     dispatch(modifyPos(payload));
   };
 
+  const orientationChange = (e: unknown, target: any) => {
+    const payload = {
+      index,
+      orientation: target.props.value,
+    };
+    dispatch(modifyOrientation(payload));
+  };
+
   return (
     <Card variant="outlined" sx={{ margin: 1, padding: 1 }}>
       <Typography>Robot {index}</Typography>
@@ -60,7 +72,7 @@ export const RobotInputComponent = (props: { robot: Robot; index: number }) => {
         labelId="demo-simple-select-standard-label"
         id="demo-simple-select-standard"
         value={orientation ?? "N"}
-        onChange={() => null}
+        onChange={orientationChange}
         label="Orientation"
       >
         <MenuItem value={"N"}>N</MenuItem>

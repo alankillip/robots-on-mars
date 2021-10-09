@@ -13,7 +13,11 @@ import {
 } from "../../features/grid/gridSlice";
 import { useAppDispatch } from "../../app/hooks";
 import { RobotInputComponent } from "./RobotInputComponent";
-import { Robot, selectRobots } from "../../features/robots/robotsSlice";
+import {
+  Robot,
+  selectRobots,
+  addRobot,
+} from "../../features/robots/robotsSlice";
 import { useState } from "react";
 
 const containerStyle: React.CSSProperties = {
@@ -25,7 +29,8 @@ const sliderStyle = {
 };
 
 export const RobotInput = () => {
-  const [currentRobot, setCurrentRobot] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const currentRobotIndex = currentPage - 1;
   const width = useSelector(selectWidth);
   const height = useSelector(selectHeight);
   const robots = useSelector(selectRobots);
@@ -40,11 +45,9 @@ export const RobotInput = () => {
   };
 
   const handlePageChange = (e: unknown, newValue: any) => {
-    setCurrentRobot(newValue);
+    setCurrentPage(newValue);
   };
-
-  console.log("currentRobot", currentRobot);
-
+  const robot = robots[currentRobotIndex];
   return (
     <Box width={"100%"} sx={containerStyle}>
       <Typography id="input-slider" gutterBottom>
@@ -73,18 +76,21 @@ export const RobotInput = () => {
         valueLabelDisplay="auto"
         onChange={heightChange}
       />
-      <Pagination
-        count={robots.length}
+      {robots.length > 1 && (
+        <Pagination
+          count={robots.length}
+          variant="outlined"
+          shape="rounded"
+          page={currentPage}
+          onChange={handlePageChange}
+        />
+      )}
+      {robot && <RobotInputComponent robot={robot} index={currentRobotIndex} />}
+      <Button
         variant="outlined"
-        shape="rounded"
-        page={currentRobot}
-        onChange={handlePageChange}
-      />
-      <RobotInputComponent
-        robot={robots[currentRobot - 1]}
-        index={currentRobot}
-      />
-      <Button variant="outlined" startIcon={<ControlPoint />}>
+        startIcon={<ControlPoint />}
+        onClick={() => dispatch(addRobot())}
+      >
         New Robot
       </Button>
     </Box>

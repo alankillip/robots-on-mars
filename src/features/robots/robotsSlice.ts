@@ -5,9 +5,11 @@ import { mockRootState } from "../shared/mockState";
 
 export type CommandType = "L" | "R" | "F";
 
+export type OrientationType = "N" | "S" | "E" | "W";
+
 export interface Robot {
   point: Point;
-  orientation: "N" | "S" | "E" | "W";
+  orientation: OrientationType;
   commands: CommandType[];
 }
 
@@ -25,19 +27,23 @@ export interface ModifyPosPayload {
   point: Point;
 }
 
-/*
+export interface ModifyOrientationPayload {
+  index: number;
+  orientation: OrientationType;
+}
+
 const initialState: RobotsState = {
   robots: [],
 };
- */
 
-const initialState: RobotsState = mockRootState.robots;
+//const initialState: RobotsState = mockRootState.robots;
 
 export const robotSlice = createSlice({
   name: "robot",
   initialState,
   reducers: {
     addRobot: (state) => {
+      console.log("addRobot ");
       state.robots.push({
         point: { x: 0, y: 0 },
         orientation: "N",
@@ -52,10 +58,18 @@ export const robotSlice = createSlice({
       const { index, point } = action.payload;
       state.robots[index].point = point;
     },
+    modifyOrientation: (
+      state,
+      action: PayloadAction<ModifyOrientationPayload>
+    ) => {
+      const { index, orientation } = action.payload;
+      state.robots[index].orientation = orientation;
+    },
   },
 });
 
-export const { addRobot, addMove, modifyPos } = robotSlice.actions;
+export const { addRobot, addMove, modifyPos, modifyOrientation } =
+  robotSlice.actions;
 
 export const selectRobots = (state: RootState) => state.robots.robots;
 
