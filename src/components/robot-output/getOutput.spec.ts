@@ -5,8 +5,34 @@ import {
   getOutput,
   updateOrientation,
   getCandidatePosition,
+  isScentPresent,
   MovingRobot,
 } from "./getOutput";
+
+describe("isScentPresent", () => {
+  it("should return true if a point is present in an array of points", () => {
+    const point = { x: 3, y: 9 };
+    const scents = [
+      { x: 1, y: 2 },
+      { x: 3, y: 4 },
+      { x: 5, y: 6 },
+      { x: 3, y: 9 },
+      { x: 3, y: 9 },
+    ];
+    expect(isScentPresent(point, scents)).toBe(true);
+  });
+  it("should return false if a point is NOT present in an array of points", () => {
+    const point = { x: 10, y: 10 };
+    const scents = [
+      { x: 1, y: 2 },
+      { x: 3, y: 4 },
+      { x: 5, y: 6 },
+      { x: 3, y: 9 },
+      { x: 3, y: 9 },
+    ];
+    expect(isScentPresent(point, scents)).toBe(false);
+  });
+});
 
 describe("getCandidatePosition", () => {
   it("should update the position by moving in the direction indicated by orientation", () => {

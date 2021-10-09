@@ -55,6 +55,12 @@ export const getCandidatePosition = (robot: MovingRobot): Point => {
   return { x: -1, y: -1 };
 };
 
+export const isScentPresent = (point: Point, scents: Point[]) => {
+  const indexFinder = (scent: Point) =>
+    point.x === scent.x && point.y === scent.y;
+  return scents.findIndex(indexFinder) !== -1;
+};
+
 export const getOutput = (leftX: number, topY: number, robots: Robot[]) => {
   const output = ``;
   /*
@@ -74,9 +80,12 @@ export const getOutput = (leftX: number, topY: number, robots: Robot[]) => {
       } else {
         // Gotta be 'F'
         const candidatePosition: Point = getCandidatePosition(movedRobot);
+        if (candidatePosition.x < 0 || candidatePosition.x > leftX || candidatePosition.y < 0 || candidatePosition.y > topY) {
+
+        }
       }
     };
   };
-  */
+   */
   return output;
 };
