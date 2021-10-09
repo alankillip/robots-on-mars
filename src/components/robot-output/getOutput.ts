@@ -92,6 +92,9 @@ export const getOutput = (leftX: number, topY: number, robots: Robot[]) => {
       ...movingRobot,
     };
     const applyCommand = (command: "L" | "R" | "F") => {
+      if (movedRobot.lost) {
+        return;
+      }
       if (command === "L" || command === "R") {
         movedRobot.orientation = updateOrientation(
           movedRobot.orientation,
@@ -109,7 +112,6 @@ export const getOutput = (leftX: number, topY: number, robots: Robot[]) => {
           if (!isScentPresent(candidatePosition, scents)) {
             scents.push(candidatePosition);
             movedRobot.lost = true;
-            movedRobot.point = candidatePosition;
           }
         } else {
           movedRobot.point = candidatePosition;

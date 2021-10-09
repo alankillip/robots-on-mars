@@ -22,6 +22,11 @@ export interface AddMovePayload {
   command: CommandType;
 }
 
+export interface SetCommandsPayload {
+  index: number;
+  commands: CommandType[];
+}
+
 export interface ModifyPosPayload {
   index: number;
   point: Point;
@@ -32,18 +37,17 @@ export interface ModifyOrientationPayload {
   orientation: OrientationType;
 }
 
-const initialState: RobotsState = {
+/*const initialState: RobotsState = {
   robots: [],
-};
+};*/
 
-//const initialState: RobotsState = mockRootState.robots;
+const initialState: RobotsState = mockRootState.robots;
 
 export const robotSlice = createSlice({
   name: "robot",
   initialState,
   reducers: {
     addRobot: (state) => {
-      console.log("addRobot ");
       state.robots.push({
         point: { x: 0, y: 0 },
         orientation: "N",
@@ -53,6 +57,10 @@ export const robotSlice = createSlice({
     addMove: (state, action: PayloadAction<AddMovePayload>) => {
       const { robotIndex, command } = action.payload;
       state.robots[robotIndex].commands.push(command);
+    },
+    setCommands: (state, action: PayloadAction<SetCommandsPayload>) => {
+      const { index, commands } = action.payload;
+      state.robots[index].commands = commands;
     },
     modifyPos: (state, action: PayloadAction<ModifyPosPayload>) => {
       const { index, point } = action.payload;
@@ -68,7 +76,7 @@ export const robotSlice = createSlice({
   },
 });
 
-export const { addRobot, addMove, modifyPos, modifyOrientation } =
+export const { addRobot, addMove, modifyPos, modifyOrientation, setCommands } =
   robotSlice.actions;
 
 export const selectRobots = (state: RootState) => state.robots.robots;
