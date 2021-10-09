@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 import { Point } from "../shared";
 
-type CommandType = "L" | "R" | "F";
+export type CommandType = "L" | "R" | "F";
 
 export interface Robot {
   point: Point;

@@ -1,10 +1,10 @@
-import { Robot } from "../../features/robots/robotsSlice";
+import { CommandType, Robot } from "../../features/robots/robotsSlice";
 import { Point } from "../../features/shared";
 
 export interface MovingRobot {
   point: Point;
   orientation: string;
-  commands: string[];
+  commands: CommandType[];
   lost: boolean;
 }
 
@@ -61,9 +61,29 @@ export const isScentPresent = (point: Point, scents: Point[]) => {
   return scents.findIndex(indexFinder) !== -1;
 };
 
+export const parseRobotsToOutputString = (robots: MovingRobot[]): string => {
+  const getRobotOutput = (robot: MovingRobot) => {
+    const { x, y } = robot.point;
+    const { orientation } = robot;
+    const lost = robot.lost ? " LOST" : "";
+    return `${x} ${y} ${orientation}${lost}`;
+  };
+  const outputReducer = (
+    result: string,
+    robot: MovingRobot,
+    index: number,
+    array: MovingRobot[]
+  ) => {
+    const updatedResult = `${result}${getRobotOutput(robot)}`;
+    if (index === array.length - 1) {
+      return updatedResult;
+    }
+    return `${updatedResult}\n`;
+  };
+  return robots.reduce(outputReducer, "");
+};
+
 export const getOutput = (leftX: number, topY: number, robots: Robot[]) => {
-  const output = ``;
-  /*
   const movingRobots = robots.map(getMovingRobot);
   const scents: Point[] = [];
 
@@ -80,12 +100,25 @@ export const getOutput = (leftX: number, topY: number, robots: Robot[]) => {
       } else {
         // Gotta be 'F'
         const candidatePosition: Point = getCandidatePosition(movedRobot);
-        if (candidatePosition.x < 0 || candidatePosition.x > leftX || candidatePosition.y < 0 || candidatePosition.y > topY) {
-
+        if (
+          candidatePosition.x < 0 ||
+          candidatePosition.x > leftX ||
+          candidatePosition.y < 0 ||
+          candidatePosition.y > topY
+        ) {
+          if (!isScentPresent(candidatePosition, scents)) {
+            scents.push(candidatePosition);
+            movedRobot.lost = true;
+          }
+        } else {
+          movedRobot.point = candidatePosition;
         }
       }
     };
+    movedRobot.commands.map(applyCommand);
+    return movedRobot;
   };
-   */
+  const movedRobots = movingRobots.map(moveRobot);
+  const output = parseRobotsToOutputString(movedRobots);
   return output;
 };
