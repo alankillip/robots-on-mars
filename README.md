@@ -21,7 +21,7 @@ To stop the app running, press ctrl C
 
 To run the tests, type
 
-`npm test`
+`npm test` and press 'a' to run all tests
 
 You will need to do this in another command prompt / terminal window if you want to do it while the app is running.
 
