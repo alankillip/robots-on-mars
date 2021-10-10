@@ -20,6 +20,7 @@ import {
   selectCurrentRobotIndex,
   setCurrentRobotIndex,
 } from "../../features/robots/robotsSlice";
+import { getMovedRobots } from "../robot-output/getOutput";
 
 const containerStyle: React.CSSProperties = {
   textAlign: "left",
@@ -34,6 +35,8 @@ export const RobotInput = () => {
   const width = useSelector(selectWidth);
   const height = useSelector(selectHeight);
   const robots = useSelector(selectRobots);
+  const movingRobots = getMovedRobots(width, height, robots);
+  const movedRobot = movingRobots[currentRobotIndex];
   const dispatch = useAppDispatch();
 
   const widthChange = (e: unknown, newValue: any) => {
@@ -85,7 +88,13 @@ export const RobotInput = () => {
           onChange={handlePageChange}
         />
       )}
-      {robot && <RobotInputComponent robot={robot} index={currentRobotIndex} />}
+      {robot && (
+        <RobotInputComponent
+          robot={robot}
+          lost={movedRobot.lost}
+          index={currentRobotIndex}
+        />
+      )}
       <Button
         variant="outlined"
         startIcon={<ControlPoint />}

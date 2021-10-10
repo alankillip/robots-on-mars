@@ -10,8 +10,10 @@ import { useSelector } from "react-redux";
 import { selectHeight, selectWidth } from "../../features/grid/gridSlice";
 import { restrictCommands } from "./utils";
 
-export const RobotInputComponent = (props: { robot: Robot; index: number }) => {
-  const { robot, index } = props;
+type PropTypes = { robot: Robot; index: number; lost: boolean };
+
+export const RobotInputComponent = (props: PropTypes) => {
+  const { robot, index, lost } = props;
   const { point, orientation, commands } = robot;
   const commandString = commands.join("");
   const { x, y } = point;
@@ -63,7 +65,10 @@ export const RobotInputComponent = (props: { robot: Robot; index: number }) => {
       variant="outlined"
       sx={{ margin: 1, padding: 1, display: "flex", flexDirection: "column" }}
     >
-      <Typography>Robot {index + 1}</Typography>
+      <Typography>
+        Robot {index + 1}
+        {lost ? " (LOST)" : ""}
+      </Typography>
       initial x:
       <Slider
         aria-label="x"
