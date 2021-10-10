@@ -10,13 +10,13 @@ After cloning the repo, navigate to the directory and type
 
 `npm install`
 
-This will fetch all the packages required to run the app.
+This will fetch all the packages required to run the app. It shouldn't take more than a few minutes.
 
 When this has finished running, type
 
 `npm start`
 
-This runs the app in development node.
+This runs the app in development node. The app is ready to view when the 'Compiled successfully!' message appears in the terminal
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
