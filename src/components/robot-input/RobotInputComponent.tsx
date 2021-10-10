@@ -3,12 +3,22 @@ import {
   modifyPos,
   modifyOrientation,
   setCommands,
+  deleteRobot,
 } from "../../features/robots/robotsSlice";
-import { Card, MenuItem, Slider, Typography, Select } from "@mui/material";
+import {
+  Card,
+  MenuItem,
+  Slider,
+  Typography,
+  Select,
+  IconButton,
+} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useAppDispatch } from "../../app/hooks";
 import { useSelector } from "react-redux";
 import { selectHeight, selectWidth } from "../../features/grid/gridSlice";
 import { restrictCommands } from "./utils";
+import React from "react";
 
 type PropTypes = { robot: Robot; index: number; lost: boolean };
 
@@ -60,6 +70,13 @@ export const RobotInputComponent = (props: PropTypes) => {
     dispatch(setCommands(payload));
   };
 
+  const handleDelete = (e: any) => {
+    const payload = {
+      index,
+    };
+    dispatch(deleteRobot(payload));
+  };
+
   return (
     <Card
       variant="outlined"
@@ -103,8 +120,12 @@ export const RobotInputComponent = (props: PropTypes) => {
       <textarea
         onChange={textAreaChange}
         value={commandString}
-        style={{ border: "none", outline: "none", resize: "none", height: 50 }}
+        style={{ resize: "none", height: 50 }}
       />
+      <IconButton aria-label="delete" color="error" onClick={handleDelete}>
+        <DeleteIcon />
+        Delete
+      </IconButton>
     </Card>
   );
 };

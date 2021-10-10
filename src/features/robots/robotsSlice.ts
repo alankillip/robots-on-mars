@@ -38,7 +38,7 @@ export interface ModifyOrientationPayload {
   orientation: OrientationType;
 }
 
-export interface SetCurrentIndexPayload {
+export interface IndexPayload {
   index: number;
 }
 
@@ -59,11 +59,17 @@ export const robotSlice = createSlice({
         commands: [],
       });
     },
-    setCurrentRobotIndex: (
-      state,
-      action: PayloadAction<SetCurrentIndexPayload>
-    ) => {
+    setCurrentRobotIndex: (state, action: PayloadAction<IndexPayload>) => {
       state.currentIndex = action.payload.index;
+    },
+    deleteRobot: (state, action: PayloadAction<IndexPayload>) => {
+      console.log("delete robot");
+      state.robots.splice(action.payload.index, 1);
+      state.currentIndex = Math.max(
+        state.robots.length - 1,
+        state.currentIndex
+      );
+      state.currentIndex = Math.min(0, state.currentIndex);
     },
     addMove: (state, action: PayloadAction<AddMovePayload>) => {
       const { robotIndex, command } = action.payload;
@@ -94,6 +100,7 @@ export const {
   modifyOrientation,
   setCommands,
   setCurrentRobotIndex,
+  deleteRobot,
 } = robotSlice.actions;
 
 export const selectRobots = (state: RootState) => state.robots.robots;
