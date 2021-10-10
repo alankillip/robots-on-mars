@@ -3,6 +3,9 @@
 ## Running the App
 
 You will need to have [https://nodejs.org/](Node JS) installed on your system.
+The app was authored using node v12.16.3, so anything equal or above this will definitely work
+Most versions will probably work as well.
+
 After cloning the repo, navigate to the directory and type
 
 `npm install`
