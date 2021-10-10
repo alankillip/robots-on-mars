@@ -77,11 +77,13 @@ export const RobotGrid = (props: PropTypes) => {
     const SELECTED_BORDER_WIDTH = 4;
     const isSelected = currentRobotIndex === index;
     const selectedOffset = isSelected ? SELECTED_BORDER_WIDTH : 0;
+    const id = "./robot.png";
     return (
       <img
         onClick={() => dispatch(setCurrentRobotIndex({ index: index }))}
         key={`robot-${index}`}
-        src={"./robot.png"}
+        src={id}
+        alt={id}
         style={{
           position: "absolute",
           width: tileSize,
