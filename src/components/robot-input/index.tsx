@@ -20,6 +20,7 @@ import {
   setCurrentRobotIndex,
 } from "../../features/robots/robotsSlice";
 import { getMovedRobots } from "../robot-output/getOutput";
+import { ChangeEvent } from "react";
 
 const containerStyle: React.CSSProperties = {
   textAlign: "left",
@@ -32,6 +33,8 @@ const sliderStyle = {
   width: "100%",
 };
 
+type SliderNewValueType = number | number[];
+
 export const RobotInput = () => {
   const currentRobotIndex = useSelector(selectCurrentRobotIndex);
   const width = useSelector(selectWidth);
@@ -41,15 +44,15 @@ export const RobotInput = () => {
   const movedRobot = movingRobots[currentRobotIndex];
   const dispatch = useAppDispatch();
 
-  const widthChange = (e: unknown, newValue: any) => {
-    dispatch(setGridWidth(newValue));
+  const widthChange = (e: Event, newValue: SliderNewValueType) => {
+    dispatch(setGridWidth(newValue as number));
   };
 
-  const heightChange = (e: unknown, newValue: any) => {
-    dispatch(setGridHeight(newValue));
+  const heightChange = (e: Event, newValue: SliderNewValueType) => {
+    dispatch(setGridHeight(newValue as number));
   };
 
-  const handlePageChange = (e: unknown, index: any) => {
+  const handlePageChange = (e: ChangeEvent<unknown>, index: number) => {
     dispatch(setCurrentRobotIndex({ index: index - 1 }));
   };
   const robot = robots[currentRobotIndex];
