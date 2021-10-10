@@ -54,7 +54,7 @@ export const RobotInput = () => {
   return (
     <Box width={"100%"} sx={containerStyle}>
       <Typography id="input-slider" gutterBottom>
-        Max x ( grid left )
+        Max X ( Grid Right )
       </Typography>
       <Slider
         sx={sliderStyle}
@@ -67,7 +67,7 @@ export const RobotInput = () => {
         onChange={widthChange}
       />
       <Typography id="input-slider" gutterBottom>
-        Max y ( grid top )
+        Max Y ( Grid Top )
       </Typography>
       <Slider
         sx={sliderStyle}
@@ -80,13 +80,18 @@ export const RobotInput = () => {
         onChange={heightChange}
       />
       {robots.length > 1 && (
-        <Pagination
-          count={robots.length}
-          variant="outlined"
-          shape="rounded"
-          page={currentRobotIndex + 1}
-          onChange={handlePageChange}
-        />
+        <>
+          <Typography id="input-slider" gutterBottom>
+            Select Robot:
+          </Typography>
+          <Pagination
+            count={robots.length}
+            variant="outlined"
+            shape="rounded"
+            page={currentRobotIndex + 1}
+            onChange={handlePageChange}
+          />
+        </>
       )}
       {robot && (
         <RobotInputComponent
