@@ -3,9 +3,11 @@ import { selectHeight, selectWidth } from "../../features/grid/gridSlice";
 import {
   selectCurrentRobotIndex,
   selectRobots,
+  setCurrentRobotIndex,
 } from "../../features/robots/robotsSlice";
 import { getMovedRobots, isScentPresent, MovingRobot } from "./getOutput";
 import { Point } from "../../features/shared";
+import { useAppDispatch } from "../../app/hooks";
 
 type PropTypes = {
   width: number;
@@ -46,6 +48,7 @@ export const RobotGrid = (props: PropTypes) => {
   const tileSize = width / dim;
   const tiles = new Array(gridHeight).fill(0);
   const cols = new Array(gridWidth).fill(tiles);
+  const dispatch = useAppDispatch();
 
   const gridFunction = (col: number[], xIndex: number) =>
     col.map((tile: number, yIndex: number) => (
@@ -76,6 +79,7 @@ export const RobotGrid = (props: PropTypes) => {
     const selectedOffset = isSelected ? SELECTED_BORDER_WIDTH : 0;
     return (
       <img
+        onClick={() => dispatch(setCurrentRobotIndex({ index: index }))}
         key={`robot-${index}`}
         src={"./robot.png"}
         style={{
