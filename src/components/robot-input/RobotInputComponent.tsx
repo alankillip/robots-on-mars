@@ -99,7 +99,7 @@ export const RobotInputComponent = (props: PropTypes) => {
         <MenuItem value={"E"}>EAST</MenuItem>
         <MenuItem value={"W"}>WEST</MenuItem>
       </Select>
-      Commands:
+      Edit Commands: ({50 - commandString.length} left)
       <textarea
         onChange={textAreaChange}
         value={commandString}
