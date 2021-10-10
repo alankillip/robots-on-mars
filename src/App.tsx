@@ -5,6 +5,7 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { RobotInput } from "./components/robot-input";
 import { RobotOutput } from "./components/robot-output";
+import { Typography } from "@mui/material";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -30,13 +31,22 @@ function App() {
       }}
     >
       <Paper elevation={3} sx={{ maxWidth: 800, minHeight: 650 }}>
+        <Typography variant="h3" id="input-slider" gutterBottom>
+          Robots on Mars
+        </Typography>
         <Grid container spacing={3}>
           <Grid item xs={4}>
+            <Typography variant="h5" id="input-slider" gutterBottom>
+              Input
+            </Typography>
             <Item>
               <RobotInput />
             </Item>
           </Grid>
           <Grid item xs={8}>
+            <Typography variant="h5" id="input-slider" gutterBottom>
+              Output
+            </Typography>
             <Item>
               <RobotOutput />
             </Item>
