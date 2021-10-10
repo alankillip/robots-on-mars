@@ -68,15 +68,15 @@ export const RobotInputComponent = (props: PropTypes) => {
     dispatch(modifyOrientation(payload));
   };
 
-  const textAreaChange = (e: any) => {
+  const textAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const payload = {
       index,
-      commands: restrictCommands(e.target.value),
+      commands: restrictCommands(e?.target?.value),
     };
     dispatch(setCommands(payload));
   };
 
-  const handleDelete = (e: any) => {
+  const handleDelete = () => {
     const payload = {
       index,
     };
