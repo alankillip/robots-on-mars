@@ -92,7 +92,7 @@ export const RobotInputComponent = (props: PropTypes) => {
         Robot {index + 1}
         {lost ? " (LOST)" : ""}
       </Typography>
-      initial x:
+      Initial x:
       <Slider
         aria-label="x"
         value={x ?? 0}
@@ -101,7 +101,7 @@ export const RobotInputComponent = (props: PropTypes) => {
         size="small"
         valueLabelDisplay="auto"
       />
-      initial y:
+      Initial y:
       <Slider
         aria-label="x"
         value={y ?? 0}

@@ -34,8 +34,8 @@ function App() {
         <Typography variant="h3" id="input-slider" gutterBottom>
           Robots on Mars
         </Typography>
-        <Grid container spacing={3}>
-          <Grid item xs={4}>
+        <Grid container spacing={5}>
+          <Grid item xs={5}>
             <Typography variant="h5" id="input-slider" gutterBottom>
               Input
             </Typography>
@@ -43,7 +43,7 @@ function App() {
               <RobotInput />
             </Item>
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={7}>
             <Typography variant="h5" id="input-slider" gutterBottom>
               Output
             </Typography>

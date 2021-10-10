@@ -8,10 +8,11 @@ type StateType = {
 export class GraphicalOutput extends React.PureComponent {
   private containerRef = React.createRef<HTMLDivElement>();
   state: StateType = {
-    currentWidth: 509,
+    currentWidth: 0,
   };
   componentDidMount() {
     window.addEventListener("resize", this.resize);
+    this.resize();
   }
   componentWillUnmount() {
     window.removeEventListener("resize", this.resize);

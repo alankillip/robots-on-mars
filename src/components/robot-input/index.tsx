@@ -86,18 +86,17 @@ export const RobotInput = () => {
         />
       </Card>
       {robots.length > 1 && (
-        <>
-          <Typography id="input-slider" gutterBottom>
-            Select Robot:
-          </Typography>
+        <Card variant="outlined" sx={{ margin: 1, padding: 1, height: 50 }}>
+          Select Robot:
           <Pagination
+            size="small"
             count={robots.length}
             variant="outlined"
             shape="rounded"
             page={currentRobotIndex + 1}
             onChange={handlePageChange}
           />
-        </>
+        </Card>
       )}
       {robot && (
         <RobotInputComponent
