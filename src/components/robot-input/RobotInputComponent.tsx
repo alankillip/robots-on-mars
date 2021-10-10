@@ -98,7 +98,7 @@ export const RobotInputComponent = (props: { robot: Robot; index: number }) => {
       <textarea
         onChange={textAreaChange}
         value={commandString}
-        style={{ border: "none", outline: "none", resize: "none" }}
+        style={{ border: "none", outline: "none", resize: "none", height: 50 }}
       />
     </Card>
   );

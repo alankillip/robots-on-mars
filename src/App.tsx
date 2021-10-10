@@ -31,12 +31,12 @@ function App() {
     >
       <Paper elevation={3} sx={{ maxWidth: 800, minHeight: 650 }}>
         <Grid container spacing={3}>
-          <Grid item xs={6}>
+          <Grid item xs={4}>
             <Item>
               <RobotInput />
             </Item>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={8}>
             <Item>
               <RobotOutput />
             </Item>
