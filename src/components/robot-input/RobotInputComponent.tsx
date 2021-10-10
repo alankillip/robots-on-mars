@@ -64,7 +64,7 @@ export const RobotInputComponent = (props: { robot: Robot; index: number }) => {
       sx={{ margin: 1, padding: 1, display: "flex", flexDirection: "column" }}
     >
       <Typography>Robot {index + 1}</Typography>
-      x:
+      initial x:
       <Slider
         aria-label="x"
         value={x ?? 0}
@@ -73,7 +73,7 @@ export const RobotInputComponent = (props: { robot: Robot; index: number }) => {
         size="small"
         valueLabelDisplay="auto"
       />
-      y:
+      initial y:
       <Slider
         aria-label="x"
         value={y ?? 0}

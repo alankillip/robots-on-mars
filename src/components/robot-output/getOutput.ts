@@ -83,7 +83,11 @@ export const parseRobotsToOutputString = (robots: MovingRobot[]): string => {
   return robots.reduce(outputReducer, "");
 };
 
-export const getOutput = (leftX: number, topY: number, robots: Robot[]) => {
+export const getMovedRobots = (
+  leftX: number,
+  topY: number,
+  robots: Robot[]
+) => {
   const movingRobots = robots.map(getMovingRobot);
   const scents: Point[] = [];
 
@@ -121,7 +125,11 @@ export const getOutput = (leftX: number, topY: number, robots: Robot[]) => {
     movedRobot.commands.map(applyCommand);
     return movedRobot;
   };
-  const movedRobots = movingRobots.map(moveRobot);
+  return movingRobots.map(moveRobot);
+};
+
+export const getOutput = (leftX: number, topY: number, robots: Robot[]) => {
+  const movedRobots = getMovedRobots(leftX, topY, robots);
   const output = parseRobotsToOutputString(movedRobots);
   return output;
 };
