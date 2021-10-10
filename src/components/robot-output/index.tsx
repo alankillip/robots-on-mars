@@ -6,8 +6,10 @@ import Box from "@mui/material/Box";
 import { BasicOutput } from "./basicOutput";
 import { GraphicalOutput } from "./GraphicalOutput";
 
-function TabPanel(props: any) {
-  const { children, value, index, ...other } = props;
+type TabPanelType = { children: React.ReactNode; value: number; index: number };
+
+function TabPanel(props: TabPanelType) {
+  const { children, value, index } = props;
 
   return (
     <div
@@ -15,7 +17,6 @@ function TabPanel(props: any) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      {...other}
     >
       {value === index && children}
     </div>
