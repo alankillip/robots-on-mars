@@ -21,6 +21,7 @@ import {
 } from "../../features/robots/robotsSlice";
 import { getMovedRobots } from "../robot-output/getOutput";
 import { ChangeEvent } from "react";
+import { SliderNewValueType } from "./types";
 
 const containerStyle: React.CSSProperties = {
   textAlign: "left",
@@ -32,8 +33,6 @@ const containerStyle: React.CSSProperties = {
 const sliderStyle = {
   width: "100%",
 };
-
-type SliderNewValueType = number | number[];
 
 export const RobotInput = () => {
   const currentRobotIndex = useSelector(selectCurrentRobotIndex);

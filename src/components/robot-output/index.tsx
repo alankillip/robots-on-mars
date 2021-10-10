@@ -5,6 +5,7 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { BasicOutput } from "./basicOutput";
 import { GraphicalOutput } from "./GraphicalOutput";
+import { SyntheticEvent } from "react";
 
 type TabPanelType = { children: React.ReactNode; value: number; index: number };
 
@@ -39,7 +40,10 @@ function a11yProps(index: number) {
 export const RobotOutput = () => {
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event: any, newValue: number) => {
+  const handleChange = (
+    event: SyntheticEvent<Element, Event>,
+    newValue: number
+  ) => {
     setValue(newValue);
   };
 

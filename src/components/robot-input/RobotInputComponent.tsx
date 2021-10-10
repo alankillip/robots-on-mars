@@ -4,6 +4,7 @@ import {
   modifyOrientation,
   setCommands,
   deleteRobot,
+  OrientationType,
 } from "../../features/robots/robotsSlice";
 import {
   Card,
@@ -12,6 +13,7 @@ import {
   Typography,
   Select,
   IconButton,
+  SelectChangeEvent,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useAppDispatch } from "../../app/hooks";
@@ -19,6 +21,7 @@ import { useSelector } from "react-redux";
 import { selectHeight, selectWidth } from "../../features/grid/gridSlice";
 import { restrictCommands } from "./utils";
 import React from "react";
+import { SliderNewValueType } from "./types";
 
 type PropTypes = { robot: Robot; index: number; lost: boolean };
 
@@ -32,10 +35,10 @@ export const RobotInputComponent = (props: PropTypes) => {
 
   const dispatch = useAppDispatch();
 
-  const posChangeX = (e: unknown, newValue: any) => {
+  const posChangeX = (e: Event, newValue: SliderNewValueType) => {
     const payload = {
       point: {
-        x: newValue,
+        x: newValue as number,
         y,
       },
       index,
@@ -43,18 +46,21 @@ export const RobotInputComponent = (props: PropTypes) => {
     dispatch(modifyPos(payload));
   };
 
-  const posChangeY = (e: unknown, newValue: any) => {
+  const posChangeY = (e: Event, newValue: SliderNewValueType) => {
     const payload = {
       point: {
         x,
-        y: newValue,
+        y: newValue as number,
       },
       index,
     };
     dispatch(modifyPos(payload));
   };
 
-  const orientationChange = (e: unknown, target: any) => {
+  const orientationChange = (
+    e: SelectChangeEvent<OrientationType>,
+    target: any
+  ) => {
     const payload = {
       index,
       orientation: target.props.value,
