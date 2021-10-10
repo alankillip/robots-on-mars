@@ -1,44 +1,52 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# Instructions for Robots on Mars.
 
-## Available Scripts
+## Running the App
 
-In the project directory, you can run:
+You will need to have [https://nodejs.org/](Node JS) installed on your system.
+After cloning the repo, navigate to the directory and type
 
-### `yarn start`
+`npm install`
 
-Runs the app in the development mode.<br />
+This will fetch all the packages required to run the app.
+
+When this has finished running, type
+
+`npm start`
+
+This runs the app in development node.
+
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+To stop the app running, press ctrl C
 
-### `yarn test`
+To run the tests, type
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`npm test`
 
-### `yarn build`
+You will need to do this in another command prompt / terminal window if you want to do it while the app is running.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Using the App
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+If you have run the app successfully, you should see an inout panel on the left, and an output panel in the right.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+At the top of the input panel, there are two slider controls that determine the size of the grid.
 
-### `yarn eject`
+Move these untill you have the desired size.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+To add a robot, click 'New Robot'. A control panel for the new robot will appear. The default position is (0,0), which is the bottom left hand corner of the grid.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Use the two sliders to adjust the initial position of the robot. Use 'initial orientation' dropdown to select which way your robot is facing to start off with.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To enter commands, click on the text area below the words 'Edit Commands'. You can enter F for forward, R for right, and L for left.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+There is a maximum of 50 commands per robot.
 
-## Learn More
+The output component will update in real time to relfect the changes in your robot scenario. The output is intended to follow the rules defined in the app instructions.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+There is a graphical view, and a text view. The text view generates output in the format supplied with the task instructions. The graphical view uses the same information to build a picture of the scenario.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Both views reflect the end state of the scenario after all commands have been applied, and are updated whenever there is a change to the grid, or the robots.
+
+You can select a robot via the pagination control on the left hand side, or by clicking on a robot in the graphical output.
+
+
