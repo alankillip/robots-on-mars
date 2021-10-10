@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 import { Point } from "../shared";
-import { mockRootState } from "../shared/mockState";
 
 export type CommandType = "L" | "R" | "F";
 
@@ -42,11 +41,10 @@ export interface IndexPayload {
   index: number;
 }
 
-/*const initialState: RobotsState = {
+const initialState: RobotsState = {
   robots: [],
-};*/
-
-const initialState: RobotsState = mockRootState.robots;
+  currentIndex: 0,
+};
 
 export const robotSlice = createSlice({
   name: "robot",

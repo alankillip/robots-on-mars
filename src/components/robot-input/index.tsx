@@ -2,7 +2,7 @@ import * as React from "react";
 
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
-import { Button, Pagination, Typography } from "@mui/material";
+import { Button, Card, Pagination, Typography } from "@mui/material";
 import ControlPoint from "@mui/icons-material/ControlPoint";
 import { useSelector } from "react-redux";
 import {
@@ -57,33 +57,34 @@ export const RobotInput = () => {
   const robot = robots[currentRobotIndex];
   return (
     <Box width={"100%"} sx={containerStyle}>
-      <Typography id="input-slider" gutterBottom>
-        Max X ( Grid Right )
-      </Typography>
-      <Slider
-        sx={sliderStyle}
-        size="small"
-        min={2}
-        max={50}
-        value={width ?? 0}
-        aria-label="Small"
-        valueLabelDisplay="auto"
-        onChange={widthChange}
-      />
-      <Typography id="input-slider" gutterBottom>
-        Max Y ( Grid Top )
-      </Typography>
-      <Slider
-        sx={sliderStyle}
-        size="small"
-        min={2}
-        max={50}
-        value={height ?? 0}
-        aria-label="Small"
-        valueLabelDisplay="auto"
-        onChange={heightChange}
-      />
-
+      <Card variant="outlined" sx={{ margin: 1, padding: 1, height: 130 }}>
+        <Typography id="input-slider" gutterBottom>
+          Max X ( Grid Right )
+        </Typography>
+        <Slider
+          sx={sliderStyle}
+          size="small"
+          min={2}
+          max={50}
+          value={width ?? 0}
+          aria-label="Small"
+          valueLabelDisplay="auto"
+          onChange={widthChange}
+        />
+        <Typography id="input-slider" gutterBottom>
+          Max Y ( Grid Top )
+        </Typography>
+        <Slider
+          sx={sliderStyle}
+          size="small"
+          min={2}
+          max={50}
+          value={height ?? 0}
+          aria-label="Small"
+          valueLabelDisplay="auto"
+          onChange={heightChange}
+        />
+      </Card>
       {robots.length > 1 && (
         <>
           <Typography id="input-slider" gutterBottom>
