@@ -1,6 +1,9 @@
 import { useSelector } from "react-redux";
 import { selectHeight, selectWidth } from "../../features/grid/gridSlice";
-import { selectRobots } from "../../features/robots/robotsSlice";
+import {
+  selectCurrentRobotIndex,
+  selectRobots,
+} from "../../features/robots/robotsSlice";
 import { getMovedRobots, isScentPresent, MovingRobot } from "./getOutput";
 import { Point } from "../../features/shared";
 
@@ -31,6 +34,7 @@ const isScent = (point: Point, movedRobots: MovingRobot[]) => {
 };
 
 export const RobotGrid = (props: PropTypes) => {
+  const currentRobotIndex = useSelector(selectCurrentRobotIndex);
   const rightX = useSelector(selectWidth);
   const topY = useSelector(selectHeight);
   const gridWidth = rightX + 1;
@@ -67,6 +71,9 @@ export const RobotGrid = (props: PropTypes) => {
     if (lost) {
       return null;
     }
+    const SELECTED_BORDER_WIDTH = 4;
+    const isSelected = currentRobotIndex === index;
+    const selectedOffset = isSelected ? SELECTED_BORDER_WIDTH : 0;
     return (
       <img
         key={`robot-${index}`}
@@ -75,9 +82,10 @@ export const RobotGrid = (props: PropTypes) => {
           position: "absolute",
           width: tileSize,
           height: tileSize,
-          left: x * tileSize,
-          top: (topY - y) * tileSize,
+          left: x * tileSize - selectedOffset,
+          top: (topY - y) * tileSize - selectedOffset,
           transform: getRobotTransform(robot.orientation),
+          border: isSelected ? `${SELECTED_BORDER_WIDTH}px solid green` : "",
         }}
       />
     );

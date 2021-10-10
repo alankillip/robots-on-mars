@@ -6,6 +6,7 @@ export const mockRootState: RootState = {
     topY: 3,
   },
   robots: {
+    currentIndex: 0,
     /*
     Sample Input (somehow through the GUI)
     5 3 1 1 E RFRFRFRF

@@ -17,8 +17,9 @@ import {
   Robot,
   selectRobots,
   addRobot,
+  selectCurrentRobotIndex,
+  setCurrentRobotIndex,
 } from "../../features/robots/robotsSlice";
-import { useState } from "react";
 
 const containerStyle: React.CSSProperties = {
   textAlign: "left",
@@ -29,8 +30,7 @@ const sliderStyle = {
 };
 
 export const RobotInput = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const currentRobotIndex = currentPage - 1;
+  const currentRobotIndex = useSelector(selectCurrentRobotIndex);
   const width = useSelector(selectWidth);
   const height = useSelector(selectHeight);
   const robots = useSelector(selectRobots);
@@ -44,8 +44,8 @@ export const RobotInput = () => {
     dispatch(setGridHeight(newValue));
   };
 
-  const handlePageChange = (e: unknown, newValue: any) => {
-    setCurrentPage(newValue);
+  const handlePageChange = (e: unknown, index: any) => {
+    dispatch(setCurrentRobotIndex({ index: index - 1 }));
   };
   const robot = robots[currentRobotIndex];
   return (
@@ -81,7 +81,7 @@ export const RobotInput = () => {
           count={robots.length}
           variant="outlined"
           shape="rounded"
-          page={currentPage}
+          page={currentRobotIndex + 1}
           onChange={handlePageChange}
         />
       )}

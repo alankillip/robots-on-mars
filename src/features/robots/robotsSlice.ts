@@ -15,6 +15,7 @@ export interface Robot {
 
 export interface RobotsState {
   robots: Robot[];
+  currentIndex: number;
 }
 
 export interface AddMovePayload {
@@ -37,6 +38,10 @@ export interface ModifyOrientationPayload {
   orientation: OrientationType;
 }
 
+export interface SetCurrentIndexPayload {
+  index: number;
+}
+
 /*const initialState: RobotsState = {
   robots: [],
 };*/
@@ -53,6 +58,12 @@ export const robotSlice = createSlice({
         orientation: "N",
         commands: [],
       });
+    },
+    setCurrentRobotIndex: (
+      state,
+      action: PayloadAction<SetCurrentIndexPayload>
+    ) => {
+      state.currentIndex = action.payload.index;
     },
     addMove: (state, action: PayloadAction<AddMovePayload>) => {
       const { robotIndex, command } = action.payload;
@@ -76,9 +87,17 @@ export const robotSlice = createSlice({
   },
 });
 
-export const { addRobot, addMove, modifyPos, modifyOrientation, setCommands } =
-  robotSlice.actions;
+export const {
+  addRobot,
+  addMove,
+  modifyPos,
+  modifyOrientation,
+  setCommands,
+  setCurrentRobotIndex,
+} = robotSlice.actions;
 
 export const selectRobots = (state: RootState) => state.robots.robots;
+export const selectCurrentRobotIndex = (state: RootState) =>
+  state.robots.currentIndex;
 
 export default robotSlice.reducer;
