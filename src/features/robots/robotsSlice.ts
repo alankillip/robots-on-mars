@@ -63,7 +63,6 @@ export const robotSlice = createSlice({
       state.currentIndex = action.payload.index;
     },
     deleteRobot: (state, action: PayloadAction<IndexPayload>) => {
-      console.log("delete robot");
       state.robots.splice(action.payload.index, 1);
       state.currentIndex = Math.max(
         state.robots.length - 1,

@@ -14,7 +14,6 @@ import {
 import { useAppDispatch } from "../../app/hooks";
 import { RobotInputComponent } from "./RobotInputComponent";
 import {
-  Robot,
   selectRobots,
   addRobot,
   selectCurrentRobotIndex,
@@ -24,6 +23,9 @@ import { getMovedRobots } from "../robot-output/getOutput";
 
 const containerStyle: React.CSSProperties = {
   textAlign: "left",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
 };
 
 const sliderStyle = {
@@ -79,6 +81,7 @@ export const RobotInput = () => {
         valueLabelDisplay="auto"
         onChange={heightChange}
       />
+
       {robots.length > 1 && (
         <>
           <Typography id="input-slider" gutterBottom>

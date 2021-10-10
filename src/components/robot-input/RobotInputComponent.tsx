@@ -122,7 +122,12 @@ export const RobotInputComponent = (props: PropTypes) => {
         value={commandString}
         style={{ resize: "none", height: 50 }}
       />
-      <IconButton aria-label="delete" color="error" onClick={handleDelete}>
+      <IconButton
+        aria-label="delete"
+        color="error"
+        onClick={handleDelete}
+        size="small"
+      >
         <DeleteIcon />
         Delete
       </IconButton>
